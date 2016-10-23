@@ -1,33 +1,30 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
-/**
- * Created by michael on 2016-10-08.
- */
 public class Badge {
-    private static final int WIDTH = 6;
-    private static final int HEIGHT = 6;
+    private final int WIDTH = 6;
+    private final int HEIGHT = 6;
+    private final String PLACEHOLDER = " ";
+    private String paint = "";
     private String symbol = "#";
-    private String placeHolder = " ";
-    private String paint = " ";
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception{
         Badge badge = new Badge();
-        try (InputStreamReader inputStreamReader = new InputStreamReader(System.in)) {
-            try (BufferedReader reader = new BufferedReader(inputStreamReader)) {
-                badge.draw(reader.readLine());
-            }
-        }catch (Exception ex) {
-            System.out.println("??");
+        badge.draw(args);
+    }
+
+    private void draw (String[] args) {
+        if (args.length == 0) {
+            return;
+        } else if (args.length == 2 && args[1].length() == 1) {
+            symbol = args[1];
         }
+        draw(args[0]);
     }
 
     /**
      * paints the characters
      * @param text is the input
      */
-    public void draw(String text){
+    private void draw(String text){
         char c[] = text.trim().toUpperCase().toCharArray();
 
         for (int i = 1; i <= HEIGHT; i++ ) {
@@ -112,10 +109,11 @@ public class Badge {
                         System.out.print(drawZ(i));
                         break;
                     default:
-                        System.out.print(putWordSpace());
+                        if (Character.isWhitespace(c[j]))
+                            System.out.print(putWordSpace());
                         break;
                 }
-                System.out.print(putCharSpace());
+                System.out.print(PLACEHOLDER);
             }
             System.out.println();
         }
@@ -128,15 +126,15 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++) {
             if (row == 1) {
-                paint += (i == 3 || i == 4 ? symbol : placeHolder);
+                paint += (i == 3 || i == 4 ? symbol : PLACEHOLDER);
             } else if (row == 2) {
-                paint += (i == 2 || i == 5 ? symbol : placeHolder);
+                paint += (i == 2 || i == 5 ? symbol : PLACEHOLDER);
             } else if (row == 3) {
-                paint += (i == 1 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 6 ? symbol : PLACEHOLDER);
             } else if (row == 4) {
                 paint += (symbol);
             } else if (row == 5 || row == 6){
-                paint += (i == 1 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 6 ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -149,10 +147,10 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++) {
             if (row == 1 || row == 3 || row == 6) {
-                paint += (i != 6 ? symbol : placeHolder);
+                paint += (i != 6 ? symbol : PLACEHOLDER);
             }
             else if (row == 2 || row == 4 || row == 5){
-                paint += (i == 1 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 6 ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -165,11 +163,11 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++) {
             if (row == 1 || row == 6){
-                paint += (!(i == 1 || i == 6) ? symbol : placeHolder);
+                paint += (!(i == 1 || i == 6) ? symbol : PLACEHOLDER);
             } else if (row == 2 || row == 5){
-                paint += (i == 1 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 6 ? symbol : PLACEHOLDER);
             } else if (row == 3 || row == 4) {
-                paint += (i == 1 ? symbol : placeHolder);
+                paint += (i == 1 ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -182,9 +180,9 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++) {
             if (row == 1 || row == 6){
-                paint += (i != 6 ? symbol : placeHolder);
+                paint += (i != 6 ? symbol : PLACEHOLDER);
             } else if (row == 2 || row == 3 || row == 4 || row == 5){
-                paint += (i == 1 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 6 ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -199,9 +197,9 @@ public class Badge {
             if (row == 1 || row == 6){
                 paint += symbol;
             } else if (row == 3){
-                paint += (i != 6 ? symbol : placeHolder);
+                paint += (i != 6 ? symbol : PLACEHOLDER);
             } else if (row == 2 || row == 4 || row == 5) {
-                paint += (i == 1 ? symbol : placeHolder);
+                paint += (i == 1 ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -216,9 +214,9 @@ public class Badge {
             if (row == 1){
                 paint += symbol;
             } else if (row == 3) {
-                paint += (i != 6 ? symbol : placeHolder);
+                paint += (i != 6 ? symbol : PLACEHOLDER);
             } else if (row == 2 || row == 4 || row == 5 || row == 6) {
-                paint += (i == 1 ? symbol : placeHolder);
+                paint += (i == 1 ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -231,13 +229,13 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++){
             if (row == 1 || row == 6) {
-                paint += (!(i == 1 || i == 6) ? symbol : placeHolder);
+                paint += (!(i == 1 || i == 6) ? symbol : PLACEHOLDER);
             } else if (row == 2 || row == 5){
-                paint += (i == 1 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 6 ? symbol : PLACEHOLDER);
             } else if (row == 3) {
-                paint += (i == 1 ? symbol : placeHolder);
+                paint += (i == 1 ? symbol : PLACEHOLDER);
             } else if (row == 4) {
-                paint += (!(i == 2 || i == 3) ? symbol : placeHolder);
+                paint += (!(i == 2 || i == 3) ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -250,7 +248,7 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++) {
             if (row == 1 || row == 2 || row == 4 || row == 5 || row == 6){
-                paint += (i == 1 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 6 ? symbol : PLACEHOLDER);
             } else if (row == 3) {
                 paint += symbol;
             }
@@ -265,9 +263,9 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++) {
             if (row == 1 || row == 6){
-                paint += (i != 6 ? symbol : placeHolder);
+                paint += (i != 6 ? symbol : PLACEHOLDER);
             } else {
-                paint += (i == 3 ? symbol : placeHolder);
+                paint += (i == 3 ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -280,11 +278,11 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++) {
             if (row == 1 || row == 2 || row == 3 || row == 4){
-                paint += (i == 6 ? symbol : placeHolder);
+                paint += (i == 6 ? symbol : PLACEHOLDER);
             } else if (row == 5) {
-                paint += (i == 1 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 6 ? symbol : PLACEHOLDER);
             } else if (row == 6) {
-                paint += (!(i == 1 || i == 6) ? symbol : placeHolder);
+                paint += (!(i == 1 || i == 6) ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -297,13 +295,13 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++){
             if (row == 1 || row == 6) {
-                paint += (i == 1 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 6 ? symbol : PLACEHOLDER);
             } else if (row == 2 || row == 5){
-                paint += (i == 1 || i == 5 ? symbol : placeHolder);
+                paint += (i == 1 || i == 5 ? symbol : PLACEHOLDER);
             } else if (row == 3) {
-                paint += (!(i == 5 || i == 6) ? symbol : placeHolder);
+                paint += (!(i == 5 || i == 6) ? symbol : PLACEHOLDER);
             } else if (row == 4) {
-                paint += (i == 1 || i == 4 ? symbol : placeHolder);
+                paint += (i == 1 || i == 4 ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -316,7 +314,7 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++) {
             if (row == 1 || row == 2 || row == 3 || row == 4 || row == 5) {
-                paint += (i == 1 ? symbol : placeHolder);
+                paint += (i == 1 ? symbol : PLACEHOLDER);
             } else if (row == 6) {
                 paint += symbol;
             }
@@ -331,11 +329,11 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++) {
             if (row == 1 || row == 4 || row == 5 || row == 6){
-                paint += (i == 1 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 6 ? symbol : PLACEHOLDER);
             } else if (row == 2){
-                paint += (!(i == 3 || i == 4) ? symbol : placeHolder);
+                paint += (!(i == 3 || i == 4) ? symbol : PLACEHOLDER);
             } else if (row == 3) {
-                paint += (!(i == 2 || i == 5) ? symbol : placeHolder);
+                paint += (!(i == 2 || i == 5) ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -348,15 +346,15 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++){
             if (row == 1 || row == 6) {
-                paint += (i == 1 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 6 ? symbol : PLACEHOLDER);
             } else if (row == 2){
-                paint += (i == 1 || i == 2 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 2 || i == 6 ? symbol : PLACEHOLDER);
             } else if (row == 3) {
-                paint += (i == 1 || i == 3 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 3 || i == 6 ? symbol : PLACEHOLDER);
             } else if (row == 4) {
-                paint += (i == 1 || i == 4 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 4 || i == 6 ? symbol : PLACEHOLDER);
             } else if (row == 5) {
-                paint += (i == 1 || i == 5 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 5 || i == 6 ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -369,9 +367,9 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++) {
             if (row == 1 || row == 6) {
-                paint += (!(i == 1 || i == 6) ? symbol : placeHolder);
+                paint += (!(i == 1 || i == 6) ? symbol : PLACEHOLDER);
             } else if (row == 2 || row == 3 || row == 4 || row == 5) {
-                paint += (i == 1 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 6 ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -384,11 +382,11 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++) {
             if (row == 1 || row == 4) {
-                paint += (i != 6 ? symbol : placeHolder);
+                paint += (i != 6 ? symbol : PLACEHOLDER);
             } else if (row == 2 || row == 3) {
-                paint += (i == 1 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 6 ? symbol : PLACEHOLDER);
             } else if (row == 5 || row == 6) {
-                paint += (i == 1 ? symbol : placeHolder);
+                paint += (i == 1 ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -401,15 +399,15 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++) {
             if (row == 1 ) {
-                paint += (!(i == 1 || i == 6) ? symbol : placeHolder);
+                paint += (!(i == 1 || i == 6) ? symbol : PLACEHOLDER);
             } else if (row == 2 || row == 3) {
-                paint += (i == 1 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 6 ? symbol : PLACEHOLDER);
             } else if (row == 4) {
-                paint += (i == 1 || i == 4 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 4 || i == 6 ? symbol : PLACEHOLDER);
             } else if (row == 5) {
-                paint += (i == 1 || i == 5 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 5 || i == 6 ? symbol : PLACEHOLDER);
             } else if (row == 6) {
-                paint += (!(i == 1 || i == 5) ? symbol : placeHolder);
+                paint += (!(i == 1 || i == 5) ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -422,11 +420,11 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++) {
             if (row == 1 || row == 4) {
-                paint += (i != 6 ? symbol : placeHolder);
+                paint += (i != 6 ? symbol : PLACEHOLDER);
             } else if (row == 2 || row == 3 || row == 6) {
-                paint += (i == 1 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 6 ? symbol : PLACEHOLDER);
             } else if (row == 5) {
-                paint += (i == 1 || i == 5 ? symbol : placeHolder);
+                paint += (i == 1 || i == 5 ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -439,13 +437,13 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++) {
             if (row == 1 || row == 3 || row == 6 ) {
-                paint += ( !(i == 1 || i == 6) ? symbol : placeHolder);
+                paint += ( !(i == 1 || i == 6) ? symbol : PLACEHOLDER);
             } else if (row == 2) {
-                paint += (i == 1 ? symbol : placeHolder);
+                paint += (i == 1 ? symbol : PLACEHOLDER);
             } else if (row == 4) {
-                paint += (i == 6 ? symbol : placeHolder);
+                paint += (i == 6 ? symbol : PLACEHOLDER);
             } else if (row == 5) {
-                paint += (i == 1 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 6 ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -458,10 +456,10 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++) {
             if (row == 1) {
-                paint += (i != 1 ? symbol : placeHolder);
+                paint += (i != 1 ? symbol : PLACEHOLDER);
             }
             else {
-                paint += (i == 4 ? symbol : placeHolder);
+                paint += (i == 4 ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -474,9 +472,9 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++) {
             if (row == 6) {
-                paint += (!(i == 1 || i == 6) ? symbol : placeHolder);
+                paint += (!(i == 1 || i == 6) ? symbol : PLACEHOLDER);
             } else {
-                paint += (i == 1 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 6 ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -489,11 +487,11 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++) {
             if (row == 1 || row == 2 || row == 3 || row == 4) {
-                paint += (i == 1 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 6 ? symbol : PLACEHOLDER);
             } else if (row == 5) {
-                paint += (i == 2 || i == 5 ? symbol : placeHolder);
+                paint += (i == 2 || i == 5 ? symbol : PLACEHOLDER);
             } else if (row == 6) {
-                paint += (i == 3 || i == 4 ? symbol : placeHolder);
+                paint += (i == 3 || i == 4 ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -506,11 +504,11 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++) {
             if (row == 1 || row == 2 || row == 3 || row == 6) {
-                paint += (i == 1 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 6 ? symbol : PLACEHOLDER);
             } else if (row == 4) {
-                paint += (!(i == 2 || i == 5) ? symbol : placeHolder);
+                paint += (!(i == 2 || i == 5) ? symbol : PLACEHOLDER);
             } else if (row == 5) {
-                paint += (!(i == 3 || i == 4) ? symbol : placeHolder);
+                paint += (!(i == 3 || i == 4) ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -523,11 +521,11 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++) {
             if (row == 1 || row == 6) {
-                paint += (i == 1 || i == 6 ? symbol : placeHolder);
+                paint += (i == 1 || i == 6 ? symbol : PLACEHOLDER);
             } else if (row == 2 || row == 5) {
-                paint += (i == 2 || i == 5 ? symbol : placeHolder);
+                paint += (i == 2 || i == 5 ? symbol : PLACEHOLDER);
             } else if (row == 3 || row == 4) {
-                paint += (i == 3 || i == 4 ? symbol : placeHolder);
+                paint += (i == 3 || i == 4 ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -540,11 +538,11 @@ public class Badge {
         paint = "";
         for (int i = 1; i <= WIDTH; i++) {
             if (row == 1) {
-                paint += (i == 2 || i == 6 ? symbol : placeHolder);
+                paint += (i == 2 || i == 6 ? symbol : PLACEHOLDER);
             } else if (row == 2) {
-                paint += (i == 3 || i == 5 ? symbol : placeHolder);
+                paint += (i == 3 || i == 5 ? symbol : PLACEHOLDER);
             } else if (row == 3 || row == 4 || row == 5 || row == 6) {
-                paint += (i == 4 ? symbol : placeHolder);
+                paint += (i == 4 ? symbol : PLACEHOLDER);
             }
         }
         return paint;
@@ -559,23 +557,23 @@ public class Badge {
             if (row == 1 || row == 6) {
                 paint += symbol;
             } else if (row == 2) {
-                paint += (i == 5 ? symbol : placeHolder);
+                paint += (i == 5 ? symbol : PLACEHOLDER);
             } else if (row == 3) {
-                paint += (i == 4 ? symbol : placeHolder);
+                paint += (i == 4 ? symbol : PLACEHOLDER);
             } else if (row == 4) {
-                paint += (i == 3 ? symbol : placeHolder);
+                paint += (i == 3 ? symbol : PLACEHOLDER);
             } else if (row == 5) {
-                paint += (i == 2 ? symbol : placeHolder);
+                paint += (i == 2 ? symbol : PLACEHOLDER);
             }
         }
         return paint;
     }
 
     private String putCharSpace() {
-        return "  ";
+        return PLACEHOLDER;
     }
 
     private String putWordSpace() {
-        return "     ";
+        return new String(new char[5]).replace("\0", PLACEHOLDER);
     }
 }
