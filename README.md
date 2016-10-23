@@ -3,8 +3,8 @@ Writes a stylish text to terminal.
 
 ## Supported Characters  
 - [x] a - z  
-- [ ] 0-9  
-- [ ] especial characters (e.g. !, " ...)  
+- [ ] 0 - 9  
+- [ ] special chracters (!, ", &, ...)  
 
 ## Command
 `Badge <text> [symbol]` 
