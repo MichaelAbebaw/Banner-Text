@@ -11,6 +11,10 @@ public class Badge {
         badge.draw(args);
     }
 
+    /**
+     * Overload to draw(String)
+     * @param args is a user input
+     */
     private void draw (String[] args) {
         if (args.length == 0) {
             return;
