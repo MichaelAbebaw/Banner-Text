@@ -1,9 +1,10 @@
 # Banner Text
 Writes a stylish text to terminal.  
-> Only supports characters from a-z.  
+
 
 ## Command
 `Badge <text> [symbol]` 
+> Only supports characters from a-z.  
 
 ### Examples
 `Badge "hello there"`    
