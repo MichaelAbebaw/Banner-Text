@@ -19,7 +19,7 @@ public class Badge {
                 badge.draw(reader.readLine());
             }
         }catch (Exception ex) {
-            System.out.println("?");
+            System.out.println("??");
         }
     }
 
