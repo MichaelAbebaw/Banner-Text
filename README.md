@@ -9,7 +9,7 @@ Writes a stylish banner text to terminal. It supports characters from a-z.
 `Badge eight 8`  
 `Badge "My name is Earl" X`      
 
-![Uploading output.png…]()
+![output](https://cloud.githubusercontent.com/assets/16080581/19627808/2345460c-9950-11e6-8cbd-72e863fda435.png)
 
 ## Author
 
