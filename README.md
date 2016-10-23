@@ -5,8 +5,8 @@ Writes a banner to terminal.
 
 Java 8
 
-## Operations
-`Badge <text> [symbol]`
+## Command
+`Badge <text> [symbol]` 
 
 ### Examples
 `java Badge "hello there"`
