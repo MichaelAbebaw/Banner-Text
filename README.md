@@ -1,10 +1,13 @@
 # Banner Text
-Writes a stylish text to terminal.  
+Writes a stylish text to terminal. 
 
+# Supported Characters  
+- [x] a - z  
+- [ ] 0-9  
+- [ ] especial characters (e.g. !, " ...)  
 
 ## Command
 `Badge <text> [symbol]` 
-> Only supports characters from a-z.  
 
 ### Examples
 `Badge "hello there"`    
