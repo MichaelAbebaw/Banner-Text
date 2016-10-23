@@ -1,23 +1,21 @@
 # Banner Text
-Writes a stylish banner to terminal.
-
-## Prerequisites
-
-Java 8
+Writes a stylish banner text to terminal. It supports characters from a-z.
 
 ## Command
 `Badge <text> [symbol]` 
 
 ### Examples
-`java Badge "hello there"`
-  "#    # ###### #      #       ####         ##### #    # ###### #####  ###### "    
-  #    # #      #      #      #    #          #   #    # #      #    # #       
-  ###### #####  #      #      #    #          #   ###### #####  #    # #####  
-  #    # #      #      #      #    #          #   #    # #      #####  #       
-  #    # #      #      #      #    #          #   #    # #      #   #  #       
-  #    # ###### ###### ######  ####           #   #    # ###### #    # ######  
+`Badge "hello there"`
+  #    # ###### #      #       ####         ##### #    # ###### #####  ######       
+  #    # #      #      #      #    #          #   #    # #      #    # #           
+  ###### #####  #      #      #    #          #   ###### #####  #    # #####           
+  #    # #      #      #      #    #          #   #    # #      #####  #               
+  #    # #      #      #      #    #          #   #    # #      #   #  #                 
+  #    # ###### ###### ######  ####           #   #    # ###### #    # ######           
+  
+ `Badge "My name is Earl" X`
 
-`java Badge eight 8`
+`Badge eight 8`
   888888 88888   8888  8    8  88888  
   8        8    8    8 8    8    8     
   88888    8    8      888888    8     
