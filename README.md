@@ -1,5 +1,5 @@
 # Banner Text
-Writes a stylish text to terminal. 
+Writes a stylish text to the terminal. 
 
 ## Supported Characters  
 - [x] a - z  
