@@ -1,7 +1,7 @@
 # Banner Text
 Writes a stylish text to terminal. 
 
-# Supported Characters  
+## Supported Characters  
 - [x] a - z  
 - [ ] 0-9  
 - [ ] especial characters (e.g. !, " ...)  
